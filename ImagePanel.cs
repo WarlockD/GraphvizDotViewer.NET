@@ -213,7 +213,7 @@ namespace GraphWizQuick
 
                 Graphics g=e.Graphics;
                 g.InterpolationMode=interMode;
-                g.PixelOffsetMode = PixelOffsetMode.Half; //Added
+                g.PixelOffsetMode = PixelOffsetMode.HighQuality; //Added
                 g.Transform=mx;
                 g.DrawImage(image,distRect,srcRect, GraphicsUnit.Pixel);
             }

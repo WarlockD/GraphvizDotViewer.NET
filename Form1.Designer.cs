@@ -40,6 +40,7 @@
             this.btnRefresh = new System.Windows.Forms.ToolStripButton();
             this.btnResetZoom = new System.Windows.Forms.ToolStripButton();
             this.labelZoom = new System.Windows.Forms.ToolStripLabel();
+            this.panel = new GraphWizQuick.ImagePanel();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -127,11 +128,27 @@
             this.labelZoom.Size = new System.Drawing.Size(35, 22);
             this.labelZoom.Text = "100%";
             // 
+            // panel
+            // 
+            this.panel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel.CanvasSize = new System.Drawing.Size(60, 40);
+            this.panel.Image = null;
+            this.panel.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
+            this.panel.Location = new System.Drawing.Point(12, 52);
+            this.panel.Name = "panel";
+            this.panel.Size = new System.Drawing.Size(1551, 606);
+            this.panel.TabIndex = 2;
+            this.panel.Zoom = 1F;
+            this.panel.ZoomPercent = 100;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1575, 670);
+            this.Controls.Add(this.panel);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -158,6 +175,7 @@
         private System.Windows.Forms.ToolStripButton btnRefresh;
         private System.Windows.Forms.ToolStripButton btnResetZoom;
         private System.Windows.Forms.ToolStripLabel labelZoom;
+        private ImagePanel panel;
     }
 }
 

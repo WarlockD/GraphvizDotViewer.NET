@@ -22,7 +22,7 @@ namespace GraphWizQuick
         string graphFilePath;
         string graphFullFilePath;
         FileSystemWatcher graphFileWatcher;
-        ImagePanel panel;
+      //  ImagePanel panel;
         int refreshedCount = 0;
         public Form1()
         {
@@ -33,11 +33,11 @@ namespace GraphWizQuick
             dotExeFullFilePath = Path.Combine(DefaultBinLocation, "dot.exe");
             // Create a new FileSystemWatcher and set its properties.
 
-            panel = new ImagePanel();
-            panel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom;
-            panel.Dock = DockStyle.Fill;
+          //  panel = new ImagePanel();
+         //   panel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom;
+         //   panel.Dock = DockStyle.Fill;
             panel.ZoomChangedEvent += Panel_ZoomChangedEvent;
-            Controls.Add(panel);
+          //  Controls.Add(panel);
             graphFileWatcher = new FileSystemWatcher();
             graphFileWatcher.NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.CreationTime;
             graphFileWatcher.Error += GraphFileWatcher_Error;
@@ -69,7 +69,9 @@ namespace GraphWizQuick
         }
         ProcessStartInfo CreateProcessStartInfoForGraph()
         {
-            string arguments = "\"" + graphFullFilePath + "\" -Tpng";// -o\"" + targetPng +"\""; // output to standard output
+          //  string arguments = "\"" + graphFullFilePath + "\" -Gdpi=3000 -Tpng";// -o\"" + targetPng +"\""; // output to standard output
+
+            string arguments = "\"" + graphFullFilePath + "\"  -Gdpi=3000  -Tpng:cairo:gd";// -o\"" + targetPng +"\""; // output to standard output 
             ProcessStartInfo info = new ProcessStartInfo();
             info.FileName = dotExeFullFilePath;
             info.Arguments = arguments;
@@ -150,7 +152,12 @@ namespace GraphWizQuick
                 {
                     ms.Position = 0; // ugh be sure to reset the position before giving it to bitmap
                     Bitmap image = new Bitmap(ms);
-                    if (image != null) UpdateImage(image);
+                    if (image != null)
+                    {
+                        UpdateImage(image);
+                        Bitmap image2 = new Bitmap(image);
+                        image2.Save("temp.png");
+                    }
                     else throw new Exception("No Imagedata from Process");
                 }
                 else throw new Exception("dot.exe: " + processTemp.StandardError.ReadToEnd());
